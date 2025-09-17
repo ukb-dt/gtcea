@@ -1,7 +1,7 @@
 # A
 Love it. Your “Gradients → Tropisms → Collisions → Emergence → Awareness” nests cleanly inside our Recursive Fugue and cleans up the biology metaphors without losing the clock/neuron scaffolding.
 
-# Mapping (tight + canonical)
+## Mapping (tight + canonical)
 
 | Your 5-step    | Neuron-Clock            | WAGYU                    | Pentad                           | Music     | Dominant tropism                                           |
 | -------------- | ----------------------- | ------------------------ | -------------------------------- | --------- | ---------------------------------------------------------- |
@@ -14,14 +14,14 @@ Love it. Your “Gradients → Tropisms → Collisions → Emergence → Awarene
 > Quick semantics:
 > **Tropism** = policy induced by a **gradient**. **Collisions** = boundary conditions where policies meet. **Emergence** = integrated state (ledger). **Awareness** = ledger→policy write-back.
 
-# Micro-math (if we want the “physics-y” gloss)
+## Micro-math (if we want the “physics-y” gloss)
 
 * Tropism velocity: $\mathbf{v} \propto -\nabla \phi$ (chemotaxis/light fields/pressure fields).
 * Collision operator at 12: $\mathcal{C}[p]$ modifies flow via contacts/constraints.
 * Emergence at soma: $\Delta S = \mathcal{I}(\theta,\Sigma,h(t))$ (integrator/homeostat).
 * Awareness/update: $\theta' = \mathcal{U}(\Delta S)$ (synaptic write-back / policy update).
 
-# Labeling the clock (answering your “6, 9, 12, soma, 3?”)
+## Labeling the clock (answering your “6, 9, 12, soma, 3?”)
 
 * **6** = **Chemotropic** θ (parameters, adversarial baseline).
 * **9** = **Heliotropic** Σ (dependencies/covariances, “field alignment”).
@@ -29,7 +29,7 @@ Love it. Your “Gradients → Tropisms → Collisions → Emergence → Awarene
 * **Soma (center)** = **Emergent homeostat** ΔS (integrated survival/ledger).
 * **3** = **Mnemonotropic** θ′ (memory-seeking efflux; survivor’s writing).
 
-# Your HTML/CSS/UI: tiny, surgical upgrades
+## Your HTML/CSS/UI: tiny, surgical upgrades
 
 **1) Accessibility & motion preference**
 
@@ -96,7 +96,7 @@ Add a `data-stage` on each node for future styling/analytics:
 <div class="theta-prime" data-stage="awareness" ...>
 ```
 
-# Micro-copy (tight, non-purple, fits the UI)
+## Micro-copy (tight, non-purple, fits the UI)
 
 * **Gradients (θ, 6):** “Field tensions define the baseline.”
 * **Tropisms (Σ, 9):** “Policies align to fields (internal + external).”
@@ -104,7 +104,7 @@ Add a `data-stage` on each node for future styling/analytics:
 * **Emergence (ΔS, soma):** “Integration writes the survival ledger.”
 * **Awareness (θ′, 3):** “Ledger updates the policy (memory outward).”
 
-# Why this works
+## Why this works
 
 * It preserves your biological lineage (chemotaxis → phototropism → thigmotaxis) while matching the enterprise scaffold (W/A/G/Y/U) and the music form.
 * It resolves ambiguity at 12 by anchoring to **thigmo/mechano** (contact/pressure) — exactly what a “collision” is.
@@ -186,7 +186,7 @@ Below are tight upgrades across the visual, product IA, and a concrete MVP simul
 
 ---
 
-# 1) The splice (visual) — make it crisply “explainable at a glance”
+## 1) The splice (visual) — make it crisply “explainable at a glance”
 
 **Rename the 5 labels (short, verb-first):**
 
@@ -209,7 +209,7 @@ Below are tight upgrades across the visual, product IA, and a concrete MVP simul
 
 ---
 
-# 2) Why this points to *The Sims* (and why it’s better)
+## 2) Why this points to *The Sims* (and why it’s better)
 
 **The Sims** is a high-agency sandbox with **desire loops** and **utilities**. Your loop is a *science-grade* version:
 
@@ -223,7 +223,7 @@ So “Game of Care” = *The Sims* for decisions, except **every click writes Δ
 
 ---
 
-# 3) Website IA (WAGYU) — tighten copy + CTA wiring
+## 3) Website IA (WAGYU) — tighten copy + CTA wiring
 
 **Home (θ · 6 · Website)**
 Hero: “Personalized care, rehearse your decisions.”
@@ -253,13 +253,13 @@ NIH history, JHU vendor line, privacy, vCard, and **Data Ethics & Safety** link.
 
 ---
 
-# 4) MVP simulation you can ship this week
+## 4) MVP simulation you can ship this week
 
 **Scenario**: *Potential Living Kidney Donor — early work-up decisions*
 Target users: donor + clinician + coordinator.
 Goal: rehearse 4–6 pivotal choices and show ΔS on: donor risk, recipient wait-time, cost, and probability of abort.
 
-### Game loop (one “episode”)
+#### Game loop (one “episode”)
 
 1. **Sense**: ingest age, eGFR, APOL1 phenotype (if known/unknown), BMI, BP, family hx.
 2. **Align**: show required dependencies (labs, consults, imaging, insurance eligibility); mark **known unknowns**.
@@ -326,7 +326,7 @@ policy_snippet:
 
 ---
 
-# 5) Frontend + API skeleton (so you can click it)
+## 5) Frontend + API skeleton (so you can click it)
 
 **Stack**: Flask (API) + small React (or HTMX) front; SQLite for now.
 
@@ -375,7 +375,7 @@ POST /api/policy/export              -> returns YAML snippet
 
 ---
 
-# 6) Risk-model integration, cleanly
+## 6) Risk-model integration, cleanly
 
 * **Library**: a `models/` repo mapping literature models → Python callables with metadata:
 
@@ -392,7 +392,7 @@ POST /api/policy/export              -> returns YAML snippet
 
 ---
 
-# 7) Copy polish for your Home draft (brevity + punch)
+## 7) Copy polish for your Home draft (brevity + punch)
 
 **Headline**
 **Rehearse high-stakes care.**
@@ -409,7 +409,7 @@ NIH-backed research · Johns Hopkins vendor (Jun 2025) · Game-first rehearsal �
 
 ---
 
-# 8) Guardrails & ethics (baked into ΔS)
+## 8) Guardrails & ethics (baked into ΔS)
 
 * **Equity penalty** feature: add debiasing terms to ΔS when a path pushes late-stage disqualification asymmetrically.
 * **Explainability**: show which inputs swung ΔS (SHAP-style) and surface “what would flip this decision?”
@@ -417,7 +417,7 @@ NIH-backed research · Johns Hopkins vendor (Jun 2025) · Game-first rehearsal �
 
 ---
 
-# 9) Concrete next steps
+## 9) Concrete next steps
 
 1. **Ship the MVP**: implement the `/api/simulate` for the donor scenario with a stubbed APOL1 model + 4 choices.
 2. **Wire the UI**: one page with timeline → choice → ΔS waterfall → policy tab.
@@ -426,4 +426,241 @@ NIH-backed research · Johns Hopkins vendor (Jun 2025) · Game-first rehearsal �
 5. **Second scenario**: Post-transplant CKD → HQoL choices (you’ve got that paper thread).
 
 If you want, I can drop a tiny Flask `simulate` route + a React stub for the decision card and the ΔS waterfall in the next message.
+
+# F
+Pyromancer, this rules. 🥂
+Crystal day indeed — you just snapped GTCEA into place in public, live on Pages. That repo read like a gong.
+
+Here’s a tight “seal-the-deal” pack you can drop straight into **ukb-dt/gtcea**:
+
+---
+
+## 1) Pin the story on the homepage (hero + working demo)
+
+Paste the **Try-a-Scenario** widget into `index.html` (pure client-side; no backend). It computes a tiny ΔS ledger and renders a θ′ policy snippet so visitors feel “The Sims of Care” in \~30 seconds.
+
+```html
+<!-- === Try-a-Scenario (Kidney donor MVP) === -->
+<section id="try-scenario" style="max-width:860px;margin:48px auto;padding:24px;border:1px solid #2b3347;border-radius:12px;background:#111726;color:#e6edf3">
+  <h2 style="margin:0 0 12px">🎮 Try a Donor Work-up (mini)</h2>
+  <p style="margin:0 0 16px;color:#9aa7b4">Every click writes the survival ledger (ΔS) and a policy update (θ′).</p>
+
+  <form id="mvp-form" style="display:grid;grid-template-columns:repeat(2, minmax(220px,1fr));gap:12px">
+    <label>Age
+      <input type="number" name="age" value="32" min="18" max="75" style="width:100%;padding:8px;background:#0a0f1c;border:1px solid #2b3347;color:#e6edf3;border-radius:8px">
+    </label>
+    <label>Ancestry
+      <select name="ancestry" style="width:100%;padding:8px;background:#0a0f1c;border:1px solid #2b3347;color:#e6edf3;border-radius:8px">
+        <option>African</option><option>European</option><option>Asian</option><option>Latine</option><option>Other/Unknown</option>
+      </select>
+    </label>
+    <label>APOL1 status
+      <select name="apol1" style="width:100%;padding:8px;background:#0a0f1c;border:1px solid #2b3347;color:#e6edf3;border-radius:8px">
+        <option>unknown</option><option>low-risk</option><option>high-risk</option>
+      </select>
+    </label>
+    <label>eGFR (mL/min/1.73m²)
+      <input type="number" name="egfr" value="104" min="40" max="140" style="width:100%;padding:8px;background:#0a0f1c;border:1px solid #2b3347;color:#e6edf3;border-radius:8px">
+    </label>
+  </form>
+
+  <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
+    <button data-choice="apol1_now" class="mvp-choice">Offer APOL1 test now</button>
+    <button data-choice="apol1_defer" class="mvp-choice">Defer APOL1 test</button>
+    <button data-choice="cta_first" class="mvp-choice">CT angiogram first</button>
+    <button data-choice="lifestyle_trial" class="mvp-choice">Lifestyle trial first</button>
+  </div>
+
+  <div id="mvp-out" style="margin-top:16px;display:grid;grid-template-columns:1.2fr 0.8fr;gap:16px">
+    <div style="border:1px solid #2b3347;border-radius:10px;padding:12px">
+      <h3 style="margin:0 0 8px">ΔS Ledger</h3>
+      <pre id="ledger" style="margin:0;white-space:pre-wrap;color:#9aa7b4"></pre>
+      <div id="score" style="margin-top:8px;font-weight:700"></div>
+    </div>
+    <div style="border:1px solid #2b3347;border-radius:10px;padding:12px">
+      <h3 style="margin:0 0 8px">θ′ Policy</h3>
+      <pre id="policy" style="margin:0;white-space:pre-wrap;color:#9aa7b4"></pre>
+    </div>
+  </div>
+</section>
+
+<script>
+(() => {
+  // weights (stakeholder = clinician default). Tweak per audience.
+  const W = { wait:-1.0, donorRisk:-2.0, cost:-0.2, lateAbort:-0.8, equity:-1.5 };
+
+  // tiny effects model (illustrative; replace w/ literature model hooks later)
+  const EFFECTS = {
+    apol1_now:       { cost:150,  time:10, lateAbort:-0.05, donorRisk:+0.00, equity:0 },
+    apol1_defer:     { cost:0,    time:-2, lateAbort:+0.07, donorRisk:+0.00, equity:+1 },
+    cta_first:       { cost:850,  time:7,  lateAbort:+0.00, donorRisk:+0.00, equity:0 },
+    lifestyle_trial: { cost:50,   time:21, lateAbort:-0.01, donorRisk:-0.01, equity:0 }
+  };
+
+  const $ = sel => document.querySelector(sel);
+  const out = (id, txt) => { $(id).textContent = txt; };
+
+  const fmt = (n, unit='') => {
+    const s = (n>0? '+' : '') + (Math.round(n*100)/100);
+    return unit ? `${s} ${unit}` : s;
+  };
+
+  function ledgerFor(choice, state){
+    const fx = EFFECTS[choice];
+    // very small ancestry-sensitive tweak: if African & apol1 unknown & defer => equity penalty escalates
+    const eqBump = (state.ancestry === 'African' && state.apol1 === 'unknown' && choice==='apol1_defer') ? 1 : 0;
+    const L = {
+      recipient_wait_days: fx.time,
+      donor_risk_points: fx.donorRisk,
+      cost_usd: fx.cost,
+      prob_late_abort: fx.lateAbort,
+      equity_penalty: fx.equity + eqBump
+    };
+    const dS = W.wait*(L.recipient_wait_days/7) + W.donorRisk*L.donor_risk_points + W.cost*(L.cost_usd/1000)
+             + W.lateAbort*L.prob_late_abort + W.equity*L.equity_penalty;
+    return { L, dS };
+  }
+
+  function policySnippet(choice, state){
+    if (choice==='apol1_now' && state.ancestry==='African' && state.apol1==='unknown') {
+      return `policy_snippet:
+  if ancestry == "African" and apol1_status == "unknown":
+    offer_apol1_pretest_counseling: true
+    order_apol1_test: now
+    rationale: reduces late-stage disqualification risk; equity guardrail`;
+    }
+    if (choice==='apol1_defer') {
+      return `policy_snippet:
+  if apol1_status == "unknown":
+    document_deferral_and_reason: true
+    set_review_in_days: 14
+    risk_note: increased late-stage abort probability`;
+    }
+    if (choice==='cta_first') {
+      return `policy_snippet:
+  proceed_cta: true
+  ensure_shared_decision: true
+  remind: apol1_counseling_if_african_ancestry`;
+    }
+    if (choice==='lifestyle_trial') {
+      return `policy_snippet:
+  start_bp_lifestyle_trial: true
+  re-evaluate_bmi_bp_in_days: 21
+  consider_apol1_after_trial: true`;
+    }
+    return `policy_snippet: {}`;
+  }
+
+  function readState(){
+    const f = new FormData($('#mvp-form'));
+    return {
+      age: +f.get('age'),
+      ancestry: f.get('ancestry'),
+      apol1: f.get('apol1'),
+      egfr: +f.get('egfr')
+    };
+  }
+
+  document.querySelectorAll('.mvp-choice').forEach(btn => {
+    btn.style.cssText = "padding:8px 12px;border:1px solid #2b3347;border-radius:10px;background:#0a0f1c;color:#e6edf3;cursor:pointer";
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const choice = btn.dataset.choice;
+      const state = readState();
+      const { L, dS } = ledgerFor(choice, state);
+
+      out('#ledger', 
+`recipient_wait_time_days: ${fmt(L.recipient_wait_days,'d')}
+donor_risk_points: ${fmt(L.donor_risk_points)}
+cost_usd: ${fmt(L.cost_usd,'$')}
+prob_late_abort: ${fmt(L.prob_late_abort)}
+equity_penalty: ${fmt(L.equity_penalty)}`);
+      out('#score', `ΔS (clinician view): ${fmt(dS)}`);
+      out('#policy', policySnippet(choice, state));
+    });
+  });
+})();
+</script>
+```
+
+* This makes your **“Game of Care”** concrete on the landing page.
+* Later, swap the mini-effects with your Flask `/api/simulate`; the UI contract already matches your spec.
+
+---
+
+## 2) Tighten the README (pin the paradigm + live link)
+
+```md
+# GTCEA — Gradients · Tropisms · Collisions · Emergence · Awareness
+
+**Ukubona LLC** · Personalized care you can rehearse.
+
+- **Live site:** https://ukb-dt.github.io/gtcea/
+- **Paradigm:** 6→9→12→ΔS→3 = Sense → Align → Meet → Score → Write  
+  (Neuron-Clock ↔ Tropisms ↔ WAGYU: Website/App/Game/Yield/Update)
+- **Why:** Every click writes the **survival ledger (ΔS)** and a **policy update (θ′)**.
+
+## Try it
+On the homepage, open **“Try a Donor Work-up (mini)”**. Make a choice. Watch ΔS update and θ′ export.
+
+## Next
+- Replace the mini demo with `/api/simulate`
+- Add Scenario cards: Donor Work-up, Post-Tx CKD, Statin Start, Anti-HTN Titration
+- Record a 60-sec screencap → hero video
+
+© 2025 Ukubona LLC · Johns Hopkins Enterprise Vendor (June 2025)
+```
+
+---
+
+## 3) Page polish (one-pass SEO/OG)
+
+Drop in your `<head>`:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="Ukubona · Rehearse high-stakes care. Personalized risk, playable scenarios, outcomes you can trust." />
+<meta property="og:title" content="Ukubona — Game of Care" />
+<meta property="og:description" content="Every click writes ΔS (ledger) and θ′ (policy). Try the donor work-up demo." />
+<meta property="og:image" content="non-plus-ultra.png" />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌙</text></svg>">
+```
+
+---
+
+## 4) Micro-fixes to the overlay (from your A–E notes)
+
+* Tooltips: “Chemotropic / Heliotropic / Thigmotropic (Mechanotropic) / Mnemonotropic”
+* Legend chip: bottom-right; glow on hover with `data-stage`
+* Motion: respect `prefers-reduced-motion`; rotate at 12s; pause on hover
+* Typos: *mycelial*, *mycorrhizal*, *heliotropic*
+
+*(If you want the exact one-file patch for your current `index.html`, say the word and I’ll post it inline.)*
+
+---
+
+## 5) “Release 0.1 — Crystalization Day” (tag it 🌙)
+
+Create a lightweight GitHub Release:
+
+* **Tag:** `v0.1.0-crystal`
+* **Notes:**
+
+  * Public articulation of GTCEA & Recursive Fugue
+  * Live MVP “Game of Care” mini demo (client-side ΔS + θ′)
+  * Deployed via GitHub Pages
+  * Next: `/api/simulate` + Scenario Library
+
+---
+
+# 6) Your 3-item next step list
+
+1. Merge the **Try-a-Scenario** section into `index.html`.
+2. Add the README block + OpenGraph metadata.
+3. Record a 45–60s Loom of a click → ΔS → θ′; drop it near the hero.
+
+When you’re ready, I’ll hand you a **tiny Flask `/api/simulate`** and a **waterfall ΔS chart** (client-side) to replace the mini calculator — same API you already defined.
+
+Crystal day logged. ΔS++ 💫
 
