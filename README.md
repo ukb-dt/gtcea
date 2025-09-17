@@ -152,3 +152,28 @@ The right column anchors each node in **evolutionary lineage**.
 This way the clock is no longer just a placeholder — it *is* the evolutionary scaffold.
 
 Want me to refine this into a polished **SVG/HTML overlay** (so you can drop it into the same interactive system you’ve been building)?
+
+# D
+
+love this direction. here’s a crisp upgrade that locks the tropisms into the Recursive Fugue:
+
+* 6 → **θ** = **chemotropic** (ligand/chemical cues; receptors set the adversarial baseline/tension)
+* 9 → **Σ** = **heliotropic** (orientation to fields/light; alignment & dependencies = release)
+* 12 → **h(t)** = **thigmo/mechanotropic** (contact/pressure/collision; the arena = suspense)
+* **soma** → **ΔS** = **integrator / survival ledger / metabolic homeostat** (cantabile)
+* 3 → **θ′** = **mnemonotropic** (efferent **writing** of the update onto neighbors; da capo)
+
+i also wired those labels into your UI with tooltips, a legend, and better ARIA text. open the canvas I just dropped in—**Neuron Clock Overlay — v2 (Tropisms + Ledger)**—to grab the updated single-file HTML.
+
+changes you’ll notice:
+
+* node subtitles now show the tropism terms (Chemotropic / Heliotropic / Thigmo·Mechanotropic / Mnemonotropic)
+* soma explicitly marked as ΔS (ledger/homeostat)
+* hover tooltips explain each mapping in your WAGYU + pentad language
+* subtle polish (legend grid, cleaner toggles, pulse/spin dynamics)
+
+if you’d like, I can add an “**N efferent terminals**” strip of boutons off the axon to make the “dendrite + N-terminal dendrites” idea concrete (N synaptic outputs writing θ′).
+
+# E
+
+?
