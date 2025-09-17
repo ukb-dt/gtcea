@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuron Clock Overlay - Cathedral ↔ WAGYU ↔ Play (Tropism Edition)</title>
+    <style>
+        :root {
+            --bg: #0a0f1c;
+            --panel: #111726;
+            --ink: #e6edf3;
+            --dim: #9aa7b4;
+            --line: #2b3347;
+            --accent: #7ff0d9;
+            --halo: rgba(127,240,217,.12);
+            --tropism: #ff9f43; /* New: warm accent for tropism labels */
+        }
+        body {
+            margin: 0;
+            padding: 20px;
+            background: var(--bg);
+            font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            color: var(--ink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            position: relative;
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(17,23,38,0.95) 0%, rgba(10,15,28,0.9) 100%);
+            border-radius: 16px;
+            border: 1px solid var(--line);
+            overflow: hidden;
+        }
+        .title {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--ink);
+            text-align: center;
+            z-index: 10;
+        }
+        .controls {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .toggle {
+            background: var(--panel);
+            border: 1px solid var(--line);
+            color: var(--dim);
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .toggle.active {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: var(--halo);
+        }
+        .toggle:hover {
+            border-color: #3a4a67;
+        }
+        /* Clock circle - simple dashed */
+        .clock-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border: 2px dashed var(--line);
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+        .clock-circle.rotating {
+            animation: rotate 20s linear infinite;
+        }
+        /* Soma - center node */
+        .soma {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #f1c40f, #e67e22);
+            border: 3px solid var(--accent);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+            box-shadow: 0 0 20px var(--halo);
+            z-index: 5;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .soma:hover {
+            transform: translate(-50%, -50%) scale(1.05);
+        }
+        .soma .symbol {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        .soma .desc {
+            font-size: 10px;
+            line-height: 1.1;
+        }
+        .soma .tropism {
+            font-size: 8px;
+            color: var(--tropism);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        /* Afferent dendrites (inputs) */
+        .dendrite {
+            position: absolute;
+            width: 100px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--panel), #1a2332);
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .dendrite:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px var(--halo);
+            background: linear-gradient(135deg, #1a2332, var(--panel));
+        }
+        .dendrite .symbol {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: var(--accent);
+        }
+        .dendrite .desc {
+            font-size: 9px;
+            color: var(--dim);
+            line-height: 1.1;
+        }
+        .dendrite .tropism {
+            font-size: 8px;
+            color: var(--tropism);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        /* Positions for dendrites */
+        .dendrite-12 {
+            top: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dendrite-9 {
+            left: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .dendrite-6 {
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .dendrite-3 { /* New: symmetric input at 3 o'clock */
+            right: 100px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        /* Axon extending eastward */
+        .axon {
+            position: absolute;
+            top: 50%;
+            left: calc(50% + 60px);
+            width: 140px;
+            height: 6px;
+            background: linear-gradient(90deg, var(--accent), #8ab4ff);
+            border-radius: 3px;
+            transform: translateY(-50%);
+            opacity: 0.8;
+        }
+        .axon::before, .axon::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .axon::before {
+            left: 30px;
+        }
+        .axon::after {
+            right: 30px;
+        }
+        /* θ' node - further east */
+        .theta-prime {
+            position: absolute;
+            right: 120px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 90px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--panel), #1a2332);
+            border: 2px solid #546a9a;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 11px;
+            color: var(--ink);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .theta-prime:hover {
+            transform: translateY(-50%) scale(1.05);
+            box-shadow: 0 0 15px rgba(84,106,154,0.3);
+        }
+        .theta-prime .symbol {
+            font-size: 16px;
+            font-weight: bold;
+            color: #8ab4ff;
+            margin-bottom: 2px;
+        }
+        .theta-prime .desc {
+            font-size: 9px;
+            color: var(--dim);
+            line-height: 1.1;
+        }
+        .theta-prime .tropism {
+            font-size: 8px;
+            color: var(--tropism);
+            font-weight: bold;
+            margin-top: 2px;
+        }
+        /* Connection wires */
+        .wire {
+            position: absolute;
+            background: var(--accent);
+            opacity: 0.4;
+            border-radius: 1px;
+            transition: opacity 0.3s ease;
+        }
+        .wire-12 {
+            top: 140px;
+            left: calc(50% - 1px);
+            width: 2px;
+            height: 60px;
+        }
+        .wire-9 {
+            left: 200px;
+            top: calc(50% - 1px);
+            width: 60px;
+            height: 2px;
+        }
+        .wire-6 {
+            bottom: 140px;
+            left: calc(50% - 1px);
+            width: 2px;
+            height: 60px;
+        }
+        .wire-3 { /* New: wire for 3 o'clock */
+            right: 200px;
+            top: calc(50% - 1px);
+            width: 60px;
+            height: 2px;
+        }
+        .wire.pulsing {
+            animation: pulse-wire 1.5s ease-in-out infinite;
+            background: linear-gradient(90deg, var(--accent), var(--tropism));
+        }
+        /* Animations */
+        @keyframes rotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        @keyframes pulse-wire {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
+        }
+        .soma.active {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        /* Info panel */
+        .info {
+            position: absolute;
+            bottom: 24px;
+            left: 24px;
+            right: 24px;
+            background: var(--panel);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 16px;
+            font-size: 12px;
+            color: var(--dim);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .info.show {
+            opacity: 1;
+        }
+        .info h4 {
+            color: var(--accent);
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+        .info .glossary {
+            margin-top: 8px;
+            font-size: 11px;
+        }
+        .info .glossary dt {
+            color: var(--tropism);
+            font-weight: bold;
+            margin-top: 4px;
+        }
+        .info .glossary dd {
+            margin-bottom: 4px;
+            margin-left: 0;
+        }
+        /* New: Hover popup for tropism details */
+        .popup {
+            position: absolute;
+            background: var(--panel);
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            padding: 8px;
+            font-size: 10px;
+            color: var(--ink);
+            white-space: nowrap;
+            z-index: 20;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            pointer-events: none;
+        }
+        .dendrite:hover .popup,
+        .soma:hover .popup,
+        .theta-prime:hover .popup {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Neuron Clock Overlay — Cathedral ↔ WAGYU ↔ Play (Tropism Edition)</div>
+       
+        <div class="controls">
+            <button class="toggle" id="clockToggle">Clock</button>
+            <button class="toggle" id="wiresToggle">Wires</button>
+            <button class="toggle active" id="dynamicToggle">Dynamic</button>
+        </div>
+        <!-- Simple clock circle -->
+        <div class="clock-circle" id="clockCircle"></div>
+       
+        <!-- Soma (center) -->
+        <div class="soma" id="soma">
+            <div class="symbol">ΔS</div>
+            <div class="desc">Results/Survival<br>Yield (Y)<br>Cantabile</div>
+            <div class="tropism">Somatotropic</div>
+            <div class="popup">Body-directed growth (e.g., hormone signaling at core)</div>
+        </div>
+       
+        <!-- Afferent dendrites (12, 9, 6 o'clock) -->
+        <div class="dendrite dendrite-12" data-info="h(t)">
+            <div class="symbol">h(t)</div>
+            <div class="desc">Methods/Play<br>Game (G)<br>Suspense</div>
+            <div class="tropism">Gravitropic</div>
+            <div class="popup">Upward response to gravity (anti-geotropism)</div>
+        </div>
+       
+        <div class="dendrite dendrite-9" data-info="sigma">
+            <div class="symbol">Σ</div>
+            <div class="desc">Background/Tent<br>App (A)<br>Release</div>
+            <div class="tropism">Heliotropic</div>
+            <div class="popup">Sideward response to light/sun</div>
+        </div>
+       
+        <div class="dendrite dendrite-6" data-info="theta">
+            <div class="symbol">θ</div>
+            <div class="desc">Table1/Cathedral<br>Website (W)<br>Tension</div>
+            <div class="tropism">Chemotropic</div>
+            <div class="popup">Downward response to chemical gradients</div>
+        </div>
+
+        <!-- New: Dendrite at 3 o'clock for symmetry -->
+        <div class="dendrite dendrite-3" data-info="phi">
+            <div class="symbol">φ</div>
+            <div class="desc">Forward/Edge<br>Edge (E)<br>Resolution</div>
+            <div class="tropism">Thermotropic</div>
+            <div class="popup">Forward response to temperature/heat</div>
+        </div>
+       
+        <!-- Axon extending east -->
+        <div class="axon" id="axon"></div>
+        <!-- θ' node (east of axon) -->
+        <div class="theta-prime" data-info="theta-prime">
+            <div class="symbol">θ'</div>
+            <div class="desc">Conclude/Update<br>Update (U)<br>Da capo</div>
+            <div class="tropism">Thermotropic</div>
+            <div class="popup">Forward response to temperature/heat</div>
+        </div>
+        <!-- Connection wires -->
+        <div class="wire wire-12" id="wire12"></div>
+        <div class="wire wire-9" id="wire9"></div>
+        <div class="wire wire-6" id="wire6"></div>
+        <div class="wire wire-3" id="wire3"></div>
+        <!-- Info panel -->
+        <div class="info" id="infoPanel">
+            <h4>Neural Architecture + Tropisms</h4>
+            <p>Four afferent dendrites (h(t), Σ, θ, φ) converge on soma (ΔS), signal travels via axon to terminal effector (θ'). Musical terms suggest temporal/rhythmic processing. Tropisms model directional "growth" cues.</p>
+            <dl class="glossary">
+                <dt>Dendrite + N-terminal dendrites = Dendritotropic arbor</dt>
+                <dd>Branching pattern from N-terminal protein signals to full input tree (enables convergence).</dd>
+            </dl>
+        </div>
+    </div>
+    <script>
+        const clockToggle = document.getElementById('clockToggle');
+        const wiresToggle = document.getElementById('wiresToggle');
+        const dynamicToggle = document.getElementById('dynamicToggle');
+        const clockCircle = document.getElementById('clockCircle');
+        const soma = document.getElementById('soma');
+        const wires = document.querySelectorAll('.wire');
+        const infoPanel = document.getElementById('infoPanel');
+        // Toggle functions
+        clockToggle.addEventListener('click', () => {
+            clockToggle.classList.toggle('active');
+            if (clockToggle.classList.contains('active')) {
+                clockCircle.style.opacity = '0.6';
+            } else {
+                clockCircle.style.opacity = '0';
+            }
+        });
+        wiresToggle.addEventListener('click', () => {
+            wiresToggle.classList.toggle('active');
+            const opacity = wiresToggle.classList.contains('active') ? '0.4' : '0';
+            wires.forEach(wire => wire.style.opacity = opacity);
+        });
+        dynamicToggle.addEventListener('click', () => {
+            dynamicToggle.classList.toggle('active');
+            if (dynamicToggle.classList.contains('active')) {
+                clockCircle.classList.add('rotating');
+                soma.classList.add('active');
+                wires.forEach(wire => wire.classList.add('pulsing'));
+            } else {
+                clockCircle.classList.remove('rotating');
+                soma.classList.remove('active');
+                wires.forEach(wire => wire.classList.remove('pulsing'));
+            }
+        });
+        // Show info panel on hover
+        const interactives = document.querySelectorAll('.dendrite, .soma, .theta-prime');
+        interactives.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                infoPanel.classList.add('show');
+            });
+            el.addEventListener('mouseleave', () => {
+                infoPanel.classList.remove('show');
+            });
+        });
+        // Initialize - wires off by default, dynamic on
+        wires.forEach(wire => wire.style.opacity = '0');
+        clockCircle.style.opacity = '0';
+    </script>
+</body>
+</html>
