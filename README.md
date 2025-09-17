@@ -1,3 +1,7 @@
+- [Tangential](https://www.red94.net/news/82657-tyler-perry-faces-260m-claim-in-2025-why-it-matters-today/)
+- But must be [analayzed](https://people.com/tyler-perry-lawsuit-everything-to-know-11807198)
+- Generalizability is at stake right here!
+
 # A
 Love it. Your “Gradients → Tropisms → Collisions → Emergence → Awareness” nests cleanly inside our Recursive Fugue and cleans up the biology metaphors without losing the clock/neuron scaffolding.
 
