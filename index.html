@@ -13,7 +13,7 @@
             --line: #2b3347;
             --accent: #7ff0d9;
             --halo: rgba(127,240,217,.12);
-            --tropism: #ff9f43; /* New: warm accent for tropism labels */
+            --tropism: #ff9f43;
         }
         body {
             margin: 0;
@@ -28,19 +28,20 @@
         }
         .container {
             position: relative;
-            width: 800px;
-            height: 600px;
+            width: 1200px;
+            height: 800px;
             background: radial-gradient(circle, rgba(17,23,38,0.95) 0%, rgba(10,15,28,0.9) 100%);
-            border-radius: 16px;
+            border-radius: 20px;
             border: 1px solid var(--line);
             overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
         }
         .title {
             position: absolute;
-            top: 24px;
+            top: 30px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--ink);
             text-align: center;
@@ -48,21 +49,21 @@
         }
         .controls {
             position: absolute;
-            top: 24px;
-            right: 24px;
+            top: 30px;
+            right: 30px;
             display: flex;
-            gap: 8px;
+            gap: 12px;
             z-index: 10;
         }
         .toggle {
             background: var(--panel);
             border: 1px solid var(--line);
             color: var(--dim);
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 12px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
         .toggle.active {
             color: var(--accent);
@@ -71,32 +72,33 @@
         }
         .toggle:hover {
             border-color: #3a4a67;
+            transform: translateY(-1px);
         }
-        /* Clock circle - simple dashed */
+        /* Clock circle - larger and more prominent */
         .clock-circle {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 400px;
-            height: 400px;
+            width: 600px;
+            height: 600px;
             border: 2px dashed var(--line);
             border-radius: 50%;
             opacity: 0.6;
         }
         .clock-circle.rotating {
-            animation: rotate 20s linear infinite;
+            animation: rotate 25s linear infinite;
         }
-        /* Soma - center node */
+        /* Soma - center node, slightly larger */
         .soma {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 120px;
-            height: 120px;
+            width: 140px;
+            height: 140px;
             background: linear-gradient(135deg, #f1c40f, #e67e22);
-            border: 3px solid var(--accent);
+            border: 4px solid var(--accent);
             border-radius: 50%;
             display: flex;
             flex-direction: column;
@@ -105,194 +107,199 @@
             text-align: center;
             font-weight: bold;
             color: #2c3e50;
-            box-shadow: 0 0 20px var(--halo);
+            box-shadow: 0 0 30px var(--halo);
             z-index: 5;
             cursor: pointer;
             transition: all 0.3s ease;
         }
         .soma:hover {
-            transform: translate(-50%, -50%) scale(1.05);
+            transform: translate(-50%, -50%) scale(1.08);
         }
         .soma .symbol {
-            font-size: 24px;
-            margin-bottom: 4px;
+            font-size: 28px;
+            margin-bottom: 6px;
         }
         .soma .desc {
-            font-size: 10px;
-            line-height: 1.1;
+            font-size: 11px;
+            line-height: 1.2;
         }
         .soma .tropism {
-            font-size: 8px;
+            font-size: 9px;
             color: var(--tropism);
             font-weight: bold;
-            margin-top: 2px;
+            margin-top: 4px;
         }
-        /* Afferent dendrites (inputs) */
+        /* Afferent dendrites - larger and more spread out */
         .dendrite {
             position: absolute;
-            width: 100px;
-            height: 60px;
+            width: 120px;
+            height: 80px;
             background: linear-gradient(135deg, var(--panel), #1a2332);
-            border: 2px solid var(--accent);
-            border-radius: 8px;
+            border: 3px solid var(--accent);
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: var(--ink);
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
         .dendrite:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px var(--halo);
+            transform: scale(1.08);
+            box-shadow: 0 12px 24px var(--halo);
             background: linear-gradient(135deg, #1a2332, var(--panel));
         }
         .dendrite .symbol {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             color: var(--accent);
         }
         .dendrite .desc {
-            font-size: 9px;
+            font-size: 10px;
             color: var(--dim);
-            line-height: 1.1;
+            line-height: 1.2;
         }
         .dendrite .tropism {
-            font-size: 8px;
+            font-size: 9px;
             color: var(--tropism);
             font-weight: bold;
-            margin-top: 2px;
+            margin-top: 4px;
         }
-        /* Positions for dendrites */
+        /* Positions for dendrites - much more spread out */
         .dendrite-12 {
-            top: 80px;
+            top: 60px;
             left: 50%;
             transform: translateX(-50%);
         }
         .dendrite-9 {
-            left: 100px;
+            left: 60px;
             top: 50%;
             transform: translateY(-50%);
         }
         .dendrite-6 {
-            bottom: 80px;
+            bottom: 60px;
             left: 50%;
             transform: translateX(-50%);
         }
-        .dendrite-3 { /* New: symmetric input at 3 o'clock */
-            right: 100px;
+        .dendrite-3 {
+            right: 60px;
             top: 50%;
             transform: translateY(-50%);
         }
-        /* Axon extending eastward */
+        /* Axon extending eastward - longer */
         .axon {
             position: absolute;
             top: 50%;
-            left: calc(50% + 60px);
-            width: 140px;
-            height: 6px;
+            left: calc(50% + 70px);
+            width: 200px;
+            height: 8px;
             background: linear-gradient(90deg, var(--accent), #8ab4ff);
-            border-radius: 3px;
+            border-radius: 4px;
             transform: translateY(-50%);
             opacity: 0.8;
+            box-shadow: 0 0 10px var(--halo);
         }
         .axon::before, .axon::after {
             content: '';
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 6px;
+            height: 6px;
             background: var(--accent);
             border-radius: 50%;
             top: 50%;
             transform: translateY(-50%);
+            box-shadow: 0 0 8px var(--accent);
         }
         .axon::before {
-            left: 30px;
+            left: 40px;
         }
         .axon::after {
-            right: 30px;
+            right: 40px;
         }
-        /* θ' node - further east */
+        /* θ' node - further east and larger */
         .theta-prime {
             position: absolute;
-            right: 120px;
+            right: 140px;
             top: 50%;
             transform: translateY(-50%);
-            width: 90px;
-            height: 50px;
+            width: 110px;
+            height: 70px;
             background: linear-gradient(135deg, var(--panel), #1a2332);
-            border: 2px solid #546a9a;
-            border-radius: 8px;
+            border: 3px solid #546a9a;
+            border-radius: 12px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            font-size: 11px;
+            font-size: 12px;
             color: var(--ink);
             cursor: pointer;
             transition: all 0.3s ease;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
         .theta-prime:hover {
-            transform: translateY(-50%) scale(1.05);
-            box-shadow: 0 0 15px rgba(84,106,154,0.3);
+            transform: translateY(-50%) scale(1.08);
+            box-shadow: 0 12px 24px rgba(84,106,154,0.3);
         }
         .theta-prime .symbol {
-            font-size: 16px;
+            font-size: 20px;
             font-weight: bold;
             color: #8ab4ff;
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
         .theta-prime .desc {
-            font-size: 9px;
+            font-size: 10px;
             color: var(--dim);
-            line-height: 1.1;
+            line-height: 1.2;
         }
         .theta-prime .tropism {
-            font-size: 8px;
+            font-size: 9px;
             color: var(--tropism);
             font-weight: bold;
-            margin-top: 2px;
+            margin-top: 4px;
         }
-        /* Connection wires */
+        /* Connection wires - longer and more visible */
         .wire {
             position: absolute;
             background: var(--accent);
-            opacity: 0.4;
-            border-radius: 1px;
+            opacity: 0.5;
+            border-radius: 2px;
             transition: opacity 0.3s ease;
+            box-shadow: 0 0 6px var(--halo);
         }
         .wire-12 {
             top: 140px;
-            left: calc(50% - 1px);
-            width: 2px;
-            height: 60px;
+            left: calc(50% - 2px);
+            width: 4px;
+            height: 160px;
         }
         .wire-9 {
-            left: 200px;
-            top: calc(50% - 1px);
-            width: 60px;
-            height: 2px;
+            left: 180px;
+            top: calc(50% - 2px);
+            width: 160px;
+            height: 4px;
         }
         .wire-6 {
             bottom: 140px;
-            left: calc(50% - 1px);
-            width: 2px;
-            height: 60px;
+            left: calc(50% - 2px);
+            width: 4px;
+            height: 160px;
         }
-        .wire-3 { /* New: wire for 3 o'clock */
-            right: 200px;
-            top: calc(50% - 1px);
-            width: 60px;
-            height: 2px;
+        .wire-3 {
+            right: 180px;
+            top: calc(50% - 2px);
+            width: 160px;
+            height: 4px;
         }
         .wire.pulsing {
-            animation: pulse-wire 1.5s ease-in-out infinite;
+            animation: pulse-wire 2s ease-in-out infinite;
             background: linear-gradient(90deg, var(--accent), var(--tropism));
         }
         /* Animations */
@@ -305,69 +312,88 @@
             50% { opacity: 0.7; }
         }
         @keyframes pulse-wire {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 0.8; box-shadow: 0 0 10px var(--accent); }
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.9; box-shadow: 0 0 15px var(--accent); }
         }
         .soma.active {
-            animation: pulse 2s ease-in-out infinite;
+            animation: pulse 2.5s ease-in-out infinite;
         }
-        /* Info panel */
+        /* Info panel - larger and better positioned */
         .info {
             position: absolute;
-            bottom: 24px;
-            left: 24px;
-            right: 24px;
+            bottom: 30px;
+            left: 30px;
+            right: 30px;
             background: var(--panel);
             border: 1px solid var(--line);
-            border-radius: 8px;
-            padding: 16px;
-            font-size: 12px;
+            border-radius: 12px;
+            padding: 20px;
+            font-size: 13px;
             color: var(--dim);
             opacity: 0;
             transition: opacity 0.3s ease;
-            max-height: 150px;
+            max-height: 180px;
             overflow-y: auto;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
         .info.show {
             opacity: 1;
         }
         .info h4 {
             color: var(--accent);
-            margin-bottom: 8px;
-            font-size: 13px;
+            margin-bottom: 12px;
+            font-size: 15px;
         }
         .info .glossary {
-            margin-top: 8px;
-            font-size: 11px;
+            margin-top: 12px;
+            font-size: 12px;
         }
         .info .glossary dt {
             color: var(--tropism);
             font-weight: bold;
-            margin-top: 4px;
+            margin-top: 6px;
         }
         .info .glossary dd {
-            margin-bottom: 4px;
+            margin-bottom: 6px;
             margin-left: 0;
         }
-        /* New: Hover popup for tropism details */
+        /* Enhanced hover popup */
         .popup {
             position: absolute;
             background: var(--panel);
-            border: 1px solid var(--accent);
-            border-radius: 6px;
-            padding: 8px;
-            font-size: 10px;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 11px;
             color: var(--ink);
             white-space: nowrap;
             z-index: 20;
             opacity: 0;
-            transition: opacity 0.2s ease;
+            transition: opacity 0.3s ease;
             pointer-events: none;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         .dendrite:hover .popup,
         .soma:hover .popup,
         .theta-prime:hover .popup {
             opacity: 1;
+        }
+        /* Add subtle grid pattern in background */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 1px 1px, var(--line) 1px, transparent 0);
+            background-size: 40px 40px;
+            opacity: 0.1;
+            z-index: 1;
         }
     </style>
 </head>
@@ -380,6 +406,7 @@
             <button class="toggle" id="wiresToggle">Wires</button>
             <button class="toggle active" id="dynamicToggle">Dynamic</button>
         </div>
+        
         <!-- Simple clock circle -->
         <div class="clock-circle" id="clockCircle"></div>
        
@@ -391,7 +418,7 @@
             <div class="popup">Body-directed growth (e.g., hormone signaling at core)</div>
         </div>
        
-        <!-- Afferent dendrites (12, 9, 6 o'clock) -->
+        <!-- Afferent dendrites (12, 9, 6, 3 o'clock) -->
         <div class="dendrite dendrite-12" data-info="h(t)">
             <div class="symbol">h(t)</div>
             <div class="desc">Methods/Play<br>Game (G)<br>Suspense</div>
@@ -413,7 +440,6 @@
             <div class="popup">Downward response to chemical gradients</div>
         </div>
 
-        <!-- New: Dendrite at 3 o'clock for symmetry -->
         <div class="dendrite dendrite-3" data-info="phi">
             <div class="symbol">φ</div>
             <div class="desc">Forward/Edge<br>Edge (E)<br>Resolution</div>
@@ -423,6 +449,7 @@
        
         <!-- Axon extending east -->
         <div class="axon" id="axon"></div>
+        
         <!-- θ' node (east of axon) -->
         <div class="theta-prime" data-info="theta-prime">
             <div class="symbol">θ'</div>
@@ -430,11 +457,13 @@
             <div class="tropism">Thermotropic</div>
             <div class="popup">Forward response to temperature/heat</div>
         </div>
+        
         <!-- Connection wires -->
         <div class="wire wire-12" id="wire12"></div>
         <div class="wire wire-9" id="wire9"></div>
         <div class="wire wire-6" id="wire6"></div>
         <div class="wire wire-3" id="wire3"></div>
+        
         <!-- Info panel -->
         <div class="info" id="infoPanel">
             <h4>Neural Architecture + Tropisms</h4>
@@ -445,6 +474,7 @@
             </dl>
         </div>
     </div>
+    
     <script>
         const clockToggle = document.getElementById('clockToggle');
         const wiresToggle = document.getElementById('wiresToggle');
@@ -453,6 +483,7 @@
         const soma = document.getElementById('soma');
         const wires = document.querySelectorAll('.wire');
         const infoPanel = document.getElementById('infoPanel');
+        
         // Toggle functions
         clockToggle.addEventListener('click', () => {
             clockToggle.classList.toggle('active');
@@ -462,11 +493,13 @@
                 clockCircle.style.opacity = '0';
             }
         });
+        
         wiresToggle.addEventListener('click', () => {
             wiresToggle.classList.toggle('active');
-            const opacity = wiresToggle.classList.contains('active') ? '0.4' : '0';
+            const opacity = wiresToggle.classList.contains('active') ? '0.5' : '0';
             wires.forEach(wire => wire.style.opacity = opacity);
         });
+        
         dynamicToggle.addEventListener('click', () => {
             dynamicToggle.classList.toggle('active');
             if (dynamicToggle.classList.contains('active')) {
@@ -479,6 +512,7 @@
                 wires.forEach(wire => wire.classList.remove('pulsing'));
             }
         });
+        
         // Show info panel on hover
         const interactives = document.querySelectorAll('.dendrite, .soma, .theta-prime');
         interactives.forEach(el => {
@@ -489,6 +523,7 @@
                 infoPanel.classList.remove('show');
             });
         });
+        
         // Initialize - wires off by default, dynamic on
         wires.forEach(wire => wire.style.opacity = '0');
         clockCircle.style.opacity = '0';
